@@ -26,12 +26,13 @@ export class PetHouse {
     pet.parent = null;
     this.pet_repository.push(pet);
   }
-  public adpot(person: Parent, pet: number) {
+  public adpot(parent: Parent, pet: number) {
     const found_pet = this.pet_repository.find((repo_pet) => repo_pet._id === pet);
     if (!found_pet) {
       throw new Error("This pet doesn't exists");
     }
     const adopted_pet = this.pet_repository.splice(this.pet_repository.indexOf(found_pet), 1)[0];
+    adopted_pet.parent = parent;
     return `Congratulations, you've been adopted ${adopted_pet.name}`;
   }
 }
