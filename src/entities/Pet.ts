@@ -1,8 +1,9 @@
 import { Animal } from "./Animal";
+import { Parent } from "./Parent";
 
 export class Pet extends Animal {
   private readonly registration_id = new Date().valueOf();
-  constructor(public name: string, public age: number, primitive_info: IAnimal) {
+  constructor(public name: string, public age: number, primitive_info: IAnimal, public parent: Parent | null) {
     const { order, family, weight, size, gender, specie, breed } = primitive_info;
     super(order, family, weight, size, gender, specie, breed);
   }

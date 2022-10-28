@@ -1,4 +1,5 @@
 import { Pet } from "./Pet";
+import { Parent } from "./Parent";
 export class PetHouse {
   private pet_repository: Pet[] = [];
   public getBreed(breed: string | string[]) {
@@ -21,9 +22,11 @@ export class PetHouse {
     if (this.pet_repository.find((repo_pet) => repo_pet._id === pet._id)) {
       throw new Error("This pet is already with us");
     }
+    console.log(`Thanks, ${pet.parent?.name} for creating this amazing beeing, ${pet.name} is with us from now on`);
+    pet.parent = null;
     this.pet_repository.push(pet);
   }
-  public adpot(person: any, pet: number) {
+  public adpot(person: Parent, pet: number) {
     const found_pet = this.pet_repository.find((repo_pet) => repo_pet._id === pet);
     if (!found_pet) {
       throw new Error("This pet doesn't exists");
@@ -32,15 +35,3 @@ export class PetHouse {
     return `Congratulations, you've been adopted ${adopted_pet.name}`;
   }
 }
-const spike = new Pet("Spike", 21, {
-  breed: "Rottweiler",
-  family: "Canidae",
-  order: "Carnivora",
-  gender: "Male",
-  size: 170,
-  specie: "Dog",
-  weight: 45,
-});
-const a = new PetHouse();
-a.donate(spike);
-console.log(a.adpot("", spike._id));
