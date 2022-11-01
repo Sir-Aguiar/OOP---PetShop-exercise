@@ -4,18 +4,26 @@ export class PetHouse {
   private pet_repository: Pet[] = [];
   public getBreed(breed: string | string[]) {
     if (typeof breed == "string") {
-      return this.pet_repository.map((pet) => pet.breed === breed);
+      return this.pet_repository.map((pet) => {
+        if (pet.breed === breed) return pet;
+      });
     }
     if (typeof breed == "object") {
-      return this.pet_repository.map((pet) => breed.includes(pet.breed));
+      return this.pet_repository.map((pet) => {
+        if (breed.includes(pet.breed)) return pet;
+      });
     }
   }
   public getSpecie(specie: string | string[]) {
     if (typeof specie == "string") {
-      return this.pet_repository.map((pet) => pet.specie === specie);
+      return this.pet_repository.map((pet) => {
+        if (pet.specie === specie) return pet;
+      });
     }
     if (typeof specie == "object") {
-      return this.pet_repository.map((pet) => specie.includes(pet.specie));
+      return this.pet_repository.map((pet) => {
+        if (specie.includes(pet.specie)) return pet;
+      });
     }
   }
   public donate(pet: Pet) {
